@@ -1,0 +1,104 @@
+# Comandos realizados no IDE RStudio
+
+# A execução dos comandos no R é bastante simples, bastando digitá-los no painel de console. 
+# Após a execução do comando, o R retorna o resultado do cálculo realizado,
+
+a <- 10
+[1] 15
+a +5
+[1] 5
+a - 5
+[1] 50
+a * 5
+[1] 2
+a / 5
+[1] 3.162278
+sqrt(a)
+[1] 1e+05
+a^5
+[1] 1e+05
+a**5
+[1]  1  2  3  4  5  6  7  8  9 10
+1:10
+
+Funções
+Na programação, você utiliza funções para incorporar conjuntos de instruções que deseja usar repetidamente ou que, 
+devido à sua complexidade, são mais independentes em um subprograma e devem ser chamados quando necessário. 
+Uma função é um pedaço de código escrito para executar uma tarefa específica; podendo ou não pode aceitar argumentos ou parâmetros, 
+assim como pode ou não retornar um ou mais valores.
+
+No R, conforme o tipo de dado da variável, existem funções específicas para manipular aquele valor. 
+As funções podem se dividir entre funções numéricas (quando tratam um valor que seja um número) 
+e funções de texto (quando tratam um valor que seja um ou mais caracteres). O Quadro 2.3 traz como 
+exemplo algumas funções bastante comuns relacionadas com dados numéricos, assim como o Quadro 4 traz 
+apresenta como exemplo algumas funções comuns de texto.
+
+# Funções de texto
+
+substr(x, start=n1, stop=n2)	#Retorna o texto contido em x, da posição n1 até n2
+grep(padrão, x , ignore.case=FALSE, fixed=FALSE)	#Procura o padrão em x e retorna os índices correspondentes. Se fixed = FALSE, o padrão é uma expressão regular. Se fixed = TRUE, o padrão é uma sequência de caracteres
+sub(padrão, substituição, x, ignore.case =FALSE, fixed=FALSE)	#Procura o padrão em x e o substitui pelo texto de substituição. Se fixed = FALSE, o padrão é uma expressão regular. Se fixed = TRUE, o padrão é uma sequência de texto
+gsub(padrão, substituição, x, ignore.case=FALSE, fixed=FALSE)	#Substitui todas as correspondências de uma sequência, se o parâmetro for um vetor de sequência, retorna um vetor de sequência com o mesmo comprimento e com os mesmos atributos (após possível substituição com o caractere).
+strsplit(x, split)	#Divide os elementos de x em um vetor pelo texto contido em a posição split
+paste(..., sep="")	#Concatena texto e adiciona separador
+toupper(x)	#Transforma para maiúsculo
+tolower(x)	#Transforma para minúsculo
+nchar(x)	#Retorna a quantidade de caracteres em x
+
+abs(-3)
+[1] 3
+sqrt(9)
+[1] 3
+ceiling(3.5)
+[1] 4
+floor(3.75)
+[1] 4
+trunc(3.78)
+[1] 3
+round(3.75, digits = 1)
+[1] 3.8
+cos(30)
+[1] 0.1542514
+sin(30)
+[1] -0.9880316
+tan(30)
+[1] -6.405331
+log(30)
+[1] 3.401197
+log10(10)
+[1] 1
+exp(3)
+[1] 20.08554
+substr("Meu Primeiro exemplo", start = 2, stop = 10)
+[1] "eu Primei"
+grep("a", c("banana", "ananas", "coco", "abacaxi"), ignore.case = F, fixed = F)
+[1] 1 2 4
+sub("a", "x", c("anderson"), ignore.case = F, fixed = F)
+[1] "xnderson"
+strsplit("banana", "a")
+[[1]]
+[1] "b" "n" "n"
+paste("pera", "uva", sep = "-")
+[1] "pera-uva"
+toupper("bananinha")
+[1] "BANANINHA"
+tolower("BANANA")
+[1] "banana"
+
+
+
+# Função	O que ela faz
+abs(x)	#Retorna o módulo do número
+sqrt(x)	#Retorna a raiz quadrada do número
+ceiling(x)	#Retorna o teto do número
+floor(x)	#Retorna o piso do número
+trunc(x)	#Trunca o número
+round(x, digits=n)	#Arredonda o número até “n” casas decimais
+cos(x), sin(x), tan(x)	#Retorna o cosseno, seno e tangente do número
+log(x)	#Retorna o logaritmo natural do número
+log10(x)	#Retorna o logaritmo na base 10 do número
+exp(x)	#Retorna o valor exponencial do número
+max(x)	#Retorna o maior número de um vetor
+min(x)	#Retorna o menor número de um vetor
+mean(x)	#Retorna a média de um vetor
+sd(x)	#Retorna o desvio padrão de um vetor
