@@ -1,0 +1,176 @@
+Estruturas de Dados Básicos
+
+
+Ao contrário de diferentes linguagens de programação como C e Java, R não possui variáveis declaradas como algum tipo de dado. As variáveis são nomeadas com objetos R e a forma de conhecimento do objeto R se torna o tipo de dados da variável. Existem muitos tipos de objetos R. Os mais usados popularmente são:
+
+Vetores
+○    Vetores atômicos
+○    Listas
+Matrizes
+Arrays
+DataFrames
+
+Eles podem ser divididos quanto à forma dos dados que armazenam:
+
+Dimensões          	Homogêneos	    Heterogêneos
+1 d	             Vetores atômicos	    Listas
+2 d  	              Matrizes         DataFrames
+n d	                 Arrays	
+
+
+Vetores
+A estrutura de dados básica em R é o vetor. Os vetores têm dois tipos: vetores atômicos e listas. Eles têm três propriedades comuns:
+
+typeof() - tipo de dados
+length() - quantos elementos ele contém
+attributes() - metadados arbitrários adicionais.
+
+Eles diferem nos tipos de seus elementos: todos os elementos de um vetor atômico devem ser do mesmo tipo, 
+enquanto os elementos de uma lista podem ter tipos 
+diferentes.
+
+Vetores Atômicos
+Um vetor atômico é uma estrutura de dado que representa um conjunto sequencial de um mesmo tipo de dado, ou seja, 
+para cada tipo de dado, existe um tipo de vetor atômico. No caso de se tentar combinar tipos diferentes de dados 
+no mesmo vetor atômico (como valores lógicos e numéricos, por exemplo), o R automaticamente irá encontrar o tipo 
+de dado mais apropriado para armazenar todos os valores e criará o vetor atômico com esse tipo de dado.
+
+Os vetores atômicos geralmente são criados com o comando c(), que é abreviação de combine.
+
+
+valores_num <- c(1,2.5,4.5)
+valores_num
+# Com o sufixo L, você obtém um vetor de inteiros
+valores_int <- c(2L,4L,6L)
+valores_int
+# Use TRUE e FALSE ou (ou T e F) para criar vetores logicos
+valores_logicos <- c(TRUE, FALSE, T, F)
+valores_logicos
+# Todo o conteudo que estiver entre aspas é considerada uma única palavra
+valores_chr <- c("Apenas", "Algumas", "Palavras perdidas")
+valores_chr
+# ao tentar colocar no mesmo vetor tipos diferentes
+# o R converte automaticamente para o tipo mais apropriado
+erro <- c(1.23, TRUE)
+erro
+
+Listas
+As listas são diferentes dos vetores atômicos porque seus elementos podem ser de qualquer tipo, incluindo listas (nesse caso, chamado de vetores recursivos). 
+Você pode construir listas usando o comando list() em vez de c():
+
+x <- list(1:3, "a", c(TRUE, FALSE, TRUE), c(2.3,5.9))
+str(x)
+> str(x)
+List of 4
+ $ : int [1:3] 1 2 3
+ $ : chr "a"
+ $ : logi [1:3] TRUE FALSE TRUE
+ $ : num [1:2] 2.3 5.9
+ 
+ Matrizes
+Matrizes são as estruturas nas quais os elementos são organizados em um layout retangular bidimensional, 
+contendo elementos dos mesmos tipos atômicos. Embora possamos criar uma matriz contendo apenas caracteres 
+ou apenas valores lógicos, elas não são de muita utilidade, sendo mais comum o uso de matrizes contendo 
+elementos numéricos para serem utilizadas em cálculos matemáticos.
+
+A sintaxe básica para criar uma matriz em R é:
+
+matrix(dados, nrow, ncol, byrow, dimnames)
+
+Sendo que:
+
+dados é o vetor de entrada que se torna o elemento de dados da matriz
+nrow é o número de linhas a serem criadas
+ncol é o número de colunas a serem criadas
+byrow é uma indicação lógica. Se TRUE, os elementos do vetor de entrada são organizados por linha
+dimnames são os nomes atribuídos às linhas e colunas
+
+# Matrizes
+
+# Define os nomes das linhas e colunas
+
+rownames = c("lin1", "lin2", "lin3", "lin4")
+colnames = c("col1", "col2",  "col3")
+
+# elementos são organizados sequencialmente por linhas
+p <- matrix(c(3:14), nrow = 4, byrow = TRUE, dimnames = list(rownames, colnames))
+p
+
+     col1 col2 col3
+lin1    3    4    5
+lin2    6    7    8
+lin3    9   10   11
+lin4   12   13   14
+
+Arrays
+Arrays são as estruturas de dados R que podem armazenar dados em mais de duas dimensões. Por exemplo - 
+Se criarmos um array de dimensão (2, 3, 4), ele criará 4 matrizes retangulares, cada uma com 2 linhas e 3 colunas. 
+Arrays podem armazenar apenas o mesmo tipo de dados.
+
+Um array é criado usando a função array(), utilizando como entrada os vetores e seus valores no parâmetro dim.
+
+O exemplo a seguir cria um array de duas matrizes 3x3, cada uma com 3 linhas e 3 colunas.
+
+# Arrays
+
+# cria 2 vetores de tamanhos diferentes
+vetor1 <- c(5,9,3)
+vetor2 <- c(10,11,12,13,14,15)
+
+> resultado
+, , 1
+
+     [,1] [,2] [,3]
+[1,]    5   10   13
+[2,]    9   11   14
+[3,]    3   12   15
+
+, , 2
+
+     [,1] [,2] [,3]
+[1,]    5   10   13
+[2,]    9   11   14
+[3,]    3   12   15
+
+# usa os vetores como entrada do array
+
+resultado <- array(c(vetor1, vetor2), dim = c(3,3,2))
+resultado
+
+Data Frames
+Um data frame é o tipo de dado mais comumente utilizado no R, principalmente devido à sua facilidade para a análise de dados.
+
+De forma resumida, o data frame é uma tabela ou uma estrutura bidimensional do tipo matriz em que cada coluna contém valores 
+de uma variável e cada linha contém um conjunto de valores de cada coluna. Diferente da matriz, onde é permitido somente um tipo
+de dado, o data frame aceita diferentes tipos de dados (numérico, caractere, etc).
+
+São consideradas características de um data frame:
+
+Os nomes das colunas não devem estar vazios
+Os nomes das linhas devem ser exclusivos
+Os dados armazenados em um data frame podem ser do tipo numérico, fator ou caractere
+Cada coluna deve conter o mesmo número de itens de dados
+Um data frame é criado através do comando data.frame(), que recebe vetores nomeados como entrada:
+
+
+# Dataframe
+
+df <- data.frame(x = 1.3, y = c("a", "b", "c"))
+str(df)
+
+> str(df)
+'data.frame':	3 obs. of  2 variables:
+ $ x: num  1.3 1.3 1.3
+ $ y: Factor w/ 3 levels "a","b","c": 1 2 3
+ 
+ 
+ Por padrão, ao criar um data frame com valores strings. o R automaticamente converte esses valores para o tipo factor (categoria). 
+ Para evitar esse comportamento, ao carregar o data frame deve ser indicado que as strings não devem ser tratadas como factor
+ (categoria), através do comando stringAsFactors = FALSE.
+ 
+ 
+
+
+
+
+
